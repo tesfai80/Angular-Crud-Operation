@@ -1,0 +1,53 @@
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Company Name</th>
+        <th>Month</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of employeeList">
+        <td>{{dataItem.employeeId}}</td>
+        <td>{{dataItem.employeeName}}</td>
+        <td>{{dataItem.companyName}}</td>
+        <td>{{dataItem.month}}</td>
+        <td>
+          <div class="row">
+            <div class="col-md-3">
+              <button class="btn btn-danger" (click)="remove(dataItem.employeeId)">Delete</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal"
+              (click)="update(dataItem)">Edit</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="editModal">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" (click)="closeClick()" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-update-employee [employee]="employee" *ngIf="activateAddEditStuCom">
+        </app-update-employee>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
